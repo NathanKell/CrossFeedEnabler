@@ -1,7 +1,7 @@
 Crossfeed Enabler
 by NathanKell
 
-Adds a crossfeed between the part it's added to, and the part this part is surface-attached to. Use it for radial tanks.
+A partmodule: adds a fuel crossfeed between the part it's added to, and the part this part is surface-attached to. Use it for radial tanks.
 
 License CC-BY-SA
 Source on GitHub at https://github.com/NathanKell/CrossFeedEnabler/

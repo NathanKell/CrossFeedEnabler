@@ -43,5 +43,14 @@ namespace CrossFeedEnabler
                     part.fuelLookupTargets.Add(part.parent);
             }
         }
+
+        public void OnDestroy()
+        {
+            if (part.parent != null && part.parent.fuelLookupTargets != null)
+            {
+                if (part.parent.fuelLookupTargets.Contains(this.part))
+                    part.parent.fuelLookupTargets.Remove(this.part);
+            }
+        }
     }
 }
