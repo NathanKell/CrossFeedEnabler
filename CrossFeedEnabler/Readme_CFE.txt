@@ -1,9 +1,26 @@
-NathanKell
+Crossfeed Enabler
+by NathanKell
+
+Adds a crossfeed between the part it's added to, and the part this part is surface-attached to. Use it for radial tanks.
 
 License CC-BY-SA
+Source on GitHub at https://github.com/NathanKell/CrossFeedEnabler/
 
-Add to desired parts as
+Installation: Extract to GameData. By default includes cfg to apply to radial RCS tanks, the mini radial RCS from Realism Overhaul, all Stretchy tanks as of v9, and all procedural wings.
+
+To add to other parts:
+Add:
 MODULE
 {
 	name = CrossFeedEnabler
+}
+to the cfg, or do it via MM.
+For example, create a MM node and add it to some cfg.
+
+@PART[YourPartNameHere]
+{
+	MODULE
+	{
+		name = ModuleCrossFeed
+	}
 }
