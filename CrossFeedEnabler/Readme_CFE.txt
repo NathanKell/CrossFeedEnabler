@@ -13,7 +13,7 @@ To add to other parts:
 Add:
 MODULE
 {
-	name = CrossFeedEnabler
+	name = ModuleCrossFeed
 }
 to the cfg, or do it via MM.
 For example, create a MM node and add it to some cfg.
