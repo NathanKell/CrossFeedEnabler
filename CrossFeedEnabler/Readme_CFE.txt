@@ -29,9 +29,10 @@ For example, create a MM node and add it to some cfg.
 =================
 Changelog:
 =================
-v1.1 \/
+v2   \/
 *Add support for Stretchies and PP tanks.
 *Add support for KSPX parts (Supernovy)
+*Update to 0.24
 
 v1   \/
 Initial release
