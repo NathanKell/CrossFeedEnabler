@@ -29,6 +29,9 @@ For example, create a MM node and add it to some cfg.
 =================
 Changelog:
 =================
+v2.1 \/
+*Update to .24.1
+
 v2   \/
 *Add support for Stretchies and PP tanks.
 *Add support for KSPX parts (Supernovy)
