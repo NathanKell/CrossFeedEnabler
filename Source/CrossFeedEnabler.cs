@@ -86,7 +86,7 @@ namespace CrossFeedEnabler
             Events["ToggleCrossFeed"].guiActive = actionVisible;
             Events["ToggleCrossFeed"].guiActiveEditor = actionVisible;
         }
-        public override void OnUpdate()
+        public virtual void Update()
         {
             base.OnUpdate();
             if (HighLogic.LoadedSceneIsEditor)
