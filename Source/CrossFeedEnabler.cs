@@ -40,7 +40,7 @@ namespace CrossFeedEnabler
 
         public void UpdateCrossFeed()
         {
-            if (part.fuelLookupTargets != null && part.parent != null && part.parent.fuelLookupTargets != null)
+            if (part.fuelLookupTargets != null && (object)(part.parent) != null && part.parent.fuelLookupTargets != null)
             {
                 if (crossFeedOverride)
                 {
@@ -52,13 +52,11 @@ namespace CrossFeedEnabler
                 }
                 else
                 {
-                    if (part.parent.fuelLookupTargets.Contains(part))
-                        part.parent.fuelLookupTargets.Remove(part);
-                    if (part.fuelLookupTargets.Contains(part.parent))
-                        part.fuelLookupTargets.Add(part.parent);
+                    part.parent.fuelLookupTargets.Remove(part);
+                    part.fuelLookupTargets.Remove(part.parent);
                     Events["ToggleCrossFeed"].guiName = "Crossfeed is Off";
                 }
-                if (myWindow)
+                if ((object)myWindow != null)
                     myWindow.displayDirty = true;
             }
         }
@@ -88,30 +86,32 @@ namespace CrossFeedEnabler
         }
         public virtual void Update()
         {
-            base.OnUpdate();
             if (HighLogic.LoadedSceneIsEditor)
             {
-                if (parentPart != null && parentPart != part.parent && parentPart.fuelLookupTargets != null)
+                if (parentPart != part.parent)
                 {
-                    if (parentPart.fuelLookupTargets.Contains(part))
+                    if ((object)parentPart != null && parentPart.fuelLookupTargets != null)
+                    {
                         parentPart.fuelLookupTargets.Remove(part);
+                        part.fuelLookupTargets.Remove(parentPart);
+                    }
+                    UpdateCrossFeed();
+                    parentPart = part.parent;
                 }
-                UpdateCrossFeed();
-                parentPart = part.parent;
+                else if(crossFeedOverride && !part.parent.fuelLookupTargets.Contains(part))
+                    UpdateCrossFeed();
             }
         }
 
         public void OnDestroy()
         {
-            if (part.parent != null && part.parent.fuelLookupTargets != null)
+            if ((object)(part.parent) != null && part.parent.fuelLookupTargets != null)
             {
-                if (part.parent.fuelLookupTargets.Contains(part))
-                    part.parent.fuelLookupTargets.Remove(part);
+                part.parent.fuelLookupTargets.Remove(part);
             }
-            if (parentPart != null && parentPart != part.parent && parentPart.fuelLookupTargets != null)
+            if ((object)parentPart != null && parentPart.fuelLookupTargets != null)
             {
-                if (parentPart.fuelLookupTargets.Contains(part))
-                    parentPart.fuelLookupTargets.Remove(part);
+                parentPart.fuelLookupTargets.Remove(part);
             }
         }
     }
