@@ -98,8 +98,8 @@ namespace CrossFeedEnabler
                     UpdateCrossFeed();
                     parentPart = part.parent;
                 }
-                else if(crossFeedOverride && !part.parent.fuelLookupTargets.Contains(part))
-                    UpdateCrossFeed();
+                /*else if(crossFeedOverride && (object)part.parent != null && !part.parent.fuelLookupTargets.Contains(part))
+                    UpdateCrossFeed();*/
             }
         }
 

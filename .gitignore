@@ -174,3 +174,4 @@ UpgradeLog*.htm
 FakesAssemblies/
 *.dll
 CrossFeedEnabler/Plugins/CrossFeedEnabler.dll
+*.zip
