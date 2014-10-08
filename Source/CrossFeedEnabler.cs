@@ -24,6 +24,8 @@ namespace CrossFeedEnabler
             }
         }
 
+        protected bool compatible = true;
+
         public Part parentPart = null;
         [KSPField(isPersistant = true)]
         public bool crossFeedOverride = true;
@@ -63,6 +65,13 @@ namespace CrossFeedEnabler
         // belt-and-suspenders: do this everywhere and everywhen.
         public override void OnLoad(ConfigNode node)
         {
+            if (!CompatibilityChecker.IsAllCompatible())
+            {
+                Events["ToggleCrossFeed"].guiActive = false;
+                Events["ToggleCrossFeed"].guiActiveEditor = false;
+                compatible = false;
+                return;
+            }
             base.OnLoad(node);
             UpdateCrossFeed();
             Events["ToggleCrossFeed"].guiActive = actionVisible;
@@ -71,6 +80,13 @@ namespace CrossFeedEnabler
 
         public override void OnStart(PartModule.StartState state)
         {
+            if (!CompatibilityChecker.IsAllCompatible())
+            {
+                Events["ToggleCrossFeed"].guiActive = false;
+                Events["ToggleCrossFeed"].guiActiveEditor = false;
+                compatible = false;
+                return;
+            }
             base.OnStart(state);
             UpdateCrossFeed();
             Events["ToggleCrossFeed"].guiActive = actionVisible;
@@ -79,6 +95,13 @@ namespace CrossFeedEnabler
 
         public override void OnInitialize()
         {
+            if (!CompatibilityChecker.IsAllCompatible())
+            {
+                Events["ToggleCrossFeed"].guiActive = false;
+                Events["ToggleCrossFeed"].guiActiveEditor = false;
+                compatible = false;
+                return;
+            }
             base.OnInitialize();
             UpdateCrossFeed();
             Events["ToggleCrossFeed"].guiActive = actionVisible;
@@ -86,7 +109,7 @@ namespace CrossFeedEnabler
         }
         public virtual void Update()
         {
-            if (HighLogic.LoadedSceneIsEditor)
+            if (compatible && HighLogic.LoadedSceneIsEditor)
             {
                 if (parentPart != part.parent)
                 {
@@ -105,6 +128,8 @@ namespace CrossFeedEnabler
 
         public void OnDestroy()
         {
+            if (!compatible)
+                return;
             if ((object)(part.parent) != null && part.parent.fuelLookupTargets != null)
             {
                 part.parent.fuelLookupTargets.Remove(part);
