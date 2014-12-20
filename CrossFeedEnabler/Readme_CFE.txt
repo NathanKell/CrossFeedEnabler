@@ -31,6 +31,9 @@ For example, create a MM node and add it to some cfg.
 =================
 Changelog:
 =================
+v3.2
+*Recompiled for KSP 0.90 (thanks to Padishar for fixes)
+
 v3.1
 *Recompiled for KSP 0.25
 *Turns off crossfeed on Squad radial decouplers to prevent weird things from happening. The pylon, however, still has it, so you can still make droptanks (or just use a fuel line).
