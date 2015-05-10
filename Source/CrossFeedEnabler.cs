@@ -36,19 +36,8 @@ namespace CrossFeedEnabler
         [KSPEvent(guiActive = true, guiActiveEditor = true, guiName = "Crossfeed is On")]
         public void ToggleCrossFeed()
         {
-            ModuleCrossFeed crossFeed;
             crossFeedOverride = !crossFeedOverride;
             UpdateCrossFeed();
-
-            if (HighLogic.LoadedSceneIsEditor)
-            {
-                foreach (Part symmetryPart in this.part.symmetryCounterparts)
-                {
-                    crossFeed = symmetryPart.GetComponent<ModuleCrossFeed>();
-                    crossFeed.crossFeedOverride = crossFeedOverride;
-                    crossFeed.UpdateCrossFeed();
-                }
-            }
         }
 
         public void UpdateCrossFeed()
