@@ -31,6 +31,10 @@ For example, create a MM node and add it to some cfg.
 =================
 Changelog:
 =================
+v3.3
+* Recompiled for KSP 1.0 (thanks to Padishar and Angel-125)
+* Toggling crossfeed applies to symmetry counterparts (thanks Angel-125)
+
 v3.2
 *Recompiled for KSP 0.90 (thanks to Padishar for fixes)
 
