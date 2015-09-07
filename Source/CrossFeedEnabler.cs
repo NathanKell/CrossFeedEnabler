@@ -57,10 +57,13 @@ namespace CrossFeedEnabler
             {
                 if (crossFeedOverride)
                 {
-                    if (!part.parent.fuelLookupTargets.Contains(part))
-                        part.parent.fuelLookupTargets.Add(part);
-                    if (!part.fuelLookupTargets.Contains(part.parent))
-                        part.fuelLookupTargets.Add(part.parent);
+                    if (HighLogic.LoadedSceneIsFlight)
+                    {
+                        if (!part.parent.fuelLookupTargets.Contains(part))
+                            part.parent.fuelLookupTargets.Add(part);
+                        if (!part.fuelLookupTargets.Contains(part.parent))
+                            part.fuelLookupTargets.Add(part.parent)
+                    }
                     Events["ToggleCrossFeed"].guiName = "Crossfeed is On";
                 }
                 else
